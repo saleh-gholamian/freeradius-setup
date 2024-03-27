@@ -196,6 +196,7 @@ cd daloradius-1.3
 ```
 
 We need to copy the DaloRADIUS database schema to our database with the following commands. We also need to move it to the apache case directory.
+
 _Note: If you have cloned another DaloRadius version, you may need to edit the paths based on the version number._
 ```bash
 sudo mysql -u root -p radius < contrib/db/fr2-mysql-daloradius-and-freeradius.sql
