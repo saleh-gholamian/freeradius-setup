@@ -48,22 +48,22 @@ Now that you're logged in, you need to do a few things.
 3. Give the user permissions
 
 > We can create the database by running this “CREATE DATABASE” command:
-> ```bash
+> ```sql
 > CREATE DATABASE radius;
 > ```
 > 
 > Next we need to create the user account. I would recommend changing PASSWORD to a secure password.
-> ```bash
+> ```sql
 > CREATE USER 'radius'@'localhost' IDENTIFIED by 'PASSWORD';
 > ```
 > 
 > To grant the privileges, run this command:
-> ```bash
+> ```sql
 > GRANT ALL PRIVILEGES ON radius.* TO 'radius'@'localhost';
 > ```
 > 
 > Finally, run these commands to reload the privileges in the sql database and to quit the session.
-> ```bash
+> ```sql
 > FLUSH PRIVILEGES;
 > quit;
 > ```
@@ -256,10 +256,10 @@ To solve this problem, we execute the following commands in order:
 ```bash
 sudo mysql -u root -p radius
 ```
-```bash
+```sql
 DROP TABLE radacct;
 ```
-```bash
+```sql
 CREATE TABLE radacct (
 radacctid bigint(21) NOT NULL auto_increment,
 acctsessionid varchar(64) NOT NULL default '',
