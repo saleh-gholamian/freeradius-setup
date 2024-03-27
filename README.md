@@ -126,7 +126,7 @@ You should also find the mysql block and comment the entire tls block inside it 
 > }
 > ```
 
-- _Affter:_
+- _after:_
 
 > ```bash
 > mysql {
@@ -161,7 +161,7 @@ Finally, you need to find and uncomment the Connection info and finally change i
 > #	password = "radpass"
 > ```
 
-- _Affter:_
+- _after:_
 
 > ```bash
 > 	server = "localhost"
