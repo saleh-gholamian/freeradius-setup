@@ -36,7 +36,7 @@ That's all the questions you need to answer, you can set a root password, but it
 6. _Remove test database and access to it? [Y/n]_  **y**
 7. _Reload privilege tables now? [Y/n]_  **y**
 
-**#4 Setting up mariadb**Setting up mariadb
+**#4 Setting up mariadb**
 ```bash
 sudo mysql -u root -p
 ```
@@ -69,7 +69,8 @@ Now that you're logged in, you need to do a few things.
 > ```
 
 
-**#5 Setting up radius to use mysql **
+
+**#5 Setting up radius to use mysql**
 If you're logged in as root, the _**sudo su -**_ command isn't necessary, and also probably not need to _**exit**_, but it's okay if you run them.
 ```bash
 sudo su -
@@ -101,7 +102,7 @@ Find the following lines in the file and change them exactly to the specified va
 
 You should also find the mysql block and comment the entire tls block inside it with # (must be done as follows):
 
-- **_Before:_**
+- _Before:_
 
 > ```bash
 > mysql {
@@ -151,7 +152,7 @@ You should also find the mysql block and comment the entire tls block inside it 
 
 Finally, you need to find and uncomment the Connection info and finally change its values as below
 
-- **_Before:_**
+- _Before:_
 
 > ```bash
 > #	server = "localhost"
@@ -160,7 +161,7 @@ Finally, you need to find and uncomment the Connection info and finally change i
 > #	password = "radpass"
 > ```
 
-- **_Affter:_**
+- _Affter:_
 
 > ```bash
 > 	server = "localhost"
