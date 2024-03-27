@@ -251,6 +251,7 @@ The default username is **administrator** and password is **radius**.
 
 
 **#10 Update database schema**
+
 If we want to use Freeradius for a little more advanced tasks like limiting the number of simultaneous sessions for users, you will probably encounter problems due to the absence of some fields in the default database structure (this seems to be a bug).
 To solve this problem, we execute the following commands in order:
 ```bash
