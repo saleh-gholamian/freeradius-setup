@@ -71,6 +71,7 @@ Now that you're logged in, you need to do a few things.
 
 
 **#5 Setting up radius to use mysql**
+
 If you're logged in as root, the _**sudo su -**_ command isn't necessary, and also probably not need to _**exit**_, but it's okay if you run them.
 ```bash
 sudo su -
@@ -88,6 +89,7 @@ sudo ln -s /etc/freeradius/3.0/mods-available/sql /etc/freeradius/3.0/mods-enabl
 
 
 **#6 Configure free radius sql file**
+
 Open the sql config file with an editor like nano
 ```bash
 sudo nano /etc/freeradius/3.0/mods-enabled/sql
@@ -184,6 +186,7 @@ sudo systemctl restart freeradius
 
 
 **#8 Installing DaloRADIUS**
+
 First you need to clone the daloradius repository
 ```bash
 wget https://github.com/lirantal/daloradius/archive/1.3.zip
@@ -225,6 +228,7 @@ sudo chmod 664 /var/www/html/daloradius/library/daloradius.conf.php
 
 
 **#9 Configure Daloradius**
+
 Open the daloradius configuration file with the following command:
 ```bash
 sudo nano /var/www/html/daloradius/library/daloradius.conf.php
@@ -251,6 +255,7 @@ The default username is **administrator** and password is **radius**.
 
 
 **#10 Update database schema**
+
 If we want to use Freeradius for a little more advanced tasks like limiting the number of simultaneous sessions for users, you will probably encounter problems due to the absence of some fields in the default database structure (this seems to be a bug).
 To solve this problem, we execute the following commands in order:
 ```bash
