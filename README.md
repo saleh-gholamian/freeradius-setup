@@ -303,3 +303,8 @@ KEY nasipaddress (nasipaddress)
 ) ENGINE = INNODB;
 ```
 
+```bash
+exit
+```
+
+Now the installation and configuration of Freeradius + Daloradius is finished and ready to use.
