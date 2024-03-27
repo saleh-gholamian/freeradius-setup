@@ -174,28 +174,72 @@ Finally, you need to find and uncomment the Connection info and finally change i
 
 ```
 
-**#**
+**#7 Finishing configure and start Freeradius service**
 ```bash
-
+sudo chgrp -h freerad /etc/freeradius/3.0/mods-available/sql
+sudo chown -R freerad:freerad /etc/freeradius/3.0/mods-enabled/sql
+sudo systemctl restart freeradius
 ```
 
 
 
-**#**
+**#8 Installing DaloRADIUS**
+First you need to clone the daloradius repository
 ```bash
+wget https://github.com/lirantal/daloradius/archive/1.3.zip
+```
+```bash
+unzip 1.3.zip
+```
+```bash
+cd daloradius-1.3
+```
 
+We need to copy the DaloRADIUS database schema to our database with the following commands. We also need to move it to the apache case directory.
+_Note: If you have cloned another DaloRadius version, you may need to edit the paths based on the version number._
+```bash
+sudo mysql -u root -p radius < contrib/db/fr2-mysql-daloradius-and-freeradius.sql
+```
+```bash
+sudo mysql -u root -p radius < contrib/db/mysql-daloradius.sql
+```
+```bash
+cd
+```
+```bash
+sudo mv daloradius-1.3 /var/www/html/
+```
+```bash
+sudo mv /var/www/html/daloradius-1.3 /var/www/html/daloradius
+```
+```bash
+sudo chown -R www-data:www-data /var/www/html/daloradius
+```
+```bash
+sudo cp /var/www/html/daloradius/library/daloradius.conf.php.sample /var/www/html/daloradius/library/daloradius.conf.php
+```
+```bash
+sudo chmod 664 /var/www/html/daloradius/library/daloradius.conf.php
 ```
 
 
 
-**#**
+**#9 Configure Daloradius**
+Open the daloradius configuration file with the following command:
 ```bash
-
+sudo nano /var/www/html/daloradius/library/daloradius.conf.php
 ```
 
+Then enter database info, if you have used the username and password used in this tutorial in the previous steps, the values are exactly as follows:
+> ```bash
+> $configValues['CONFIG_DB_USER'] = 'radius';
+> $configValues['CONFIG_DB_PASS'] = 'PASSWORD';
+> $configValues['CONFIG_DB_NAME'] = 'radius'
+> ```
 
 
-**#**
+
+**#10 **
 ```bash
 
 ```
