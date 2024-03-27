@@ -237,23 +237,69 @@ Then enter database info, if you have used the username and password used in thi
 > $configValues['CONFIG_DB_NAME'] = 'radius'
 > ```
 
-
-
-**#10 **
+Finally, you need to restart Apache and FreeRadius
 ```bash
-
+sudo systemctl restart freeradius.service apache2
 ```
 
+To login to the server, enter in it’s IP address and add /daloradius to the path, Like below.
+**192.158.1.38/daloradius**
+
+The default username is **administrator** and password is **radius**.
 
 
-**#**
+
+
+**#10 Update database schema**
+If we want to use Freeradius for a little more advanced tasks like limiting the number of simultaneous sessions for users, you will probably encounter problems due to the absence of some fields in the default database structure (this seems to be a bug).
+To solve this problem, we execute the following commands in order:
 ```bash
-
+sudo mysql -u root -p radius
+```
+```bash
+DROP TABLE radacct;
+```
+```bash
+CREATE TABLE radacct (
+radacctid bigint(21) NOT NULL auto_increment,
+acctsessionid varchar(64) NOT NULL default '',
+acctuniqueid varchar(32) NOT NULL default '',
+username varchar(64) NOT NULL default '',
+groupname varchar(64) NOT NULL default '',
+realm varchar(64) default '',
+nasipaddress varchar(15) NOT NULL default '',
+nasportid varchar(15) default NULL,
+nasporttype varchar(32) default NULL,
+acctstarttime datetime NULL default NULL,
+acctupdatetime datetime NULL default NULL,
+acctstoptime datetime NULL default NULL,
+acctinterval int(12) default NULL,
+acctsessiontime int(12) unsigned default NULL,
+acctauthentic varchar(32) default NULL,
+connectinfo_start varchar(50) default NULL,
+connectinfo_stop varchar(50) default NULL,
+acctinputoctets bigint(20) default NULL,
+acctoutputoctets bigint(20) default NULL,
+calledstationid varchar(50) NOT NULL default '',
+callingstationid varchar(50) NOT NULL default '',
+acctterminatecause varchar(32) NOT NULL default '',
+servicetype varchar(32) default NULL,
+framedprotocol varchar(32) default NULL,
+framedipv6address varchar(32) default NULL,
+framedipv6prefix varchar(32) default NULL,
+framedinterfaceid varchar(32) default NULL,
+delegatedipv6prefix varchar(32) default NULL,
+framedipaddress varchar(15) NOT NULL default '',
+PRIMARY KEY (radacctid),
+UNIQUE KEY acctuniqueid (acctuniqueid),
+KEY username (username),
+KEY framedipaddress (framedipaddress),
+KEY acctsessionid (acctsessionid),
+KEY acctsessiontime (acctsessiontime),
+KEY acctstarttime (acctstarttime),
+KEY acctinterval (acctinterval),
+KEY acctstoptime (acctstoptime),
+KEY nasipaddress (nasipaddress)
+) ENGINE = INNODB;
 ```
 
-
-
-**#**
-```bash
-
-```
